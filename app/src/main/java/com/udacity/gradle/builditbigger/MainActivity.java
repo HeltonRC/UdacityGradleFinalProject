@@ -1,5 +1,6 @@
 package com.udacity.gradle.builditbigger;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -7,8 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.udacity.hrcosta.androidlib.AndroidLibActivity;
 import com.udacity.hrcosta.libjokes.MyJokesClass;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,7 +45,18 @@ public class MainActivity extends AppCompatActivity {
     public void tellJoke(View view) {
         String joke = MyJokesClass.getJoke();
         Toast.makeText(this, joke, Toast.LENGTH_SHORT).show();
+        //TODO in step 3, the joke will be passed as an intent extra to the Android Library.
+
+        Intent myIntent = new Intent(this, AndroidLibActivity.class);
+        myIntent.putExtra(AndroidLibActivity.PARAM_JOKE, joke);
+
+        startActivity(myIntent);
+
     }
 
+
+    public void launchLibraryActivity(View view) {
+
+    }
 
 }

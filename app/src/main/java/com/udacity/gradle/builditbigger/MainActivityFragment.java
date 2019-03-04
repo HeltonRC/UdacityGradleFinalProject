@@ -5,8 +5,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
@@ -14,8 +12,6 @@ import com.google.android.gms.ads.AdView;
 /**
  * A placeholder fragment containing a simple view.
  */
-import com.udacity.hrcosta.libjokes.MyJokesClass;
-
 public class MainActivityFragment extends Fragment {
 
     public MainActivityFragment() {
@@ -35,11 +31,6 @@ public class MainActivityFragment extends Fragment {
                 .build();
         mAdView.loadAd(adRequest);
         return root;
-    }
-
-    private void tellJoke(){
-        String joke = MyJokesClass.getJoke();
-        Toast.makeText(getActivity(), joke, Toast.LENGTH_SHORT).show();
     }
 
 }
