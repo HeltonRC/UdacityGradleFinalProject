@@ -18,7 +18,6 @@ public class AndroidLibActivity extends AppCompatActivity {
         TextView tvJoke = this.findViewById(R.id.tvJoke);
         tvJoke.setText(joke);
 
-
     }
 
 
