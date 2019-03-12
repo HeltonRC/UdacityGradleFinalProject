@@ -41,47 +41,29 @@ class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> 
     @Override
     protected String doInBackground(Pair<Context, String>... params) {
 
+            if(myApiService == null) {  // Only do this once
+                MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
+                        new AndroidJsonFactory(), null)
+                        // options for running against local devappserver
+                        // - 10.0.2.2 is localhost's IP address in Android emulator
+                        // - turn off compression when running against local devappserver
+                        .setRootUrl("http://10.0.2.2:8080/_ah/api/")
+                        .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
+                            @Override
+                            public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) throws IOException {
+                                abstractGoogleClientRequest.setDisableGZipContent(true);
+                            }
+                        });
+                // end options for devappserver
 
+                myApiService = builder.build();
+            }
 
-//        protected String doInBackground(Pair<Context, String>... params) {
-//            if (mJokeApi == null) {
-//                JokeApi.Builder builder = new JokeApi.Builder(AndroidHttp.newCompatibleTransport(),
-//                        new AndroidJsonFactory(), null)
-//                        .setRootUrl(mContext.getString(R.string.root_url_api));
-//                mJokeApi = builder.build();
-//            }
-//            try {
-//                return mJokeApi.putJoke(new JokeBean()).execute().getJoke();
-//            } catch (IOException e) {
-//                return e.getMessage();
-//            }
-//        }
-
-
-
-        if(myApiService == null) {  // Only do this once
-            MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
-                    new AndroidJsonFactory(), null)
-                    // options for running against local devappserver
-                    // - 10.0.2.2 is localhost's IP address in Android emulator
-                    // - turn off compression when running against local devappserver
-                    .setRootUrl("http://10.0.2.2:8080/_ah/api/")
-                    .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
-                        @Override
-                        public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) throws IOException {
-                            abstractGoogleClientRequest.setDisableGZipContent(true);
-                        }
-                    });
-            // end options for devappserver
-
-            myApiService = builder.build();
-        }
-
-        try {
-            return myApiService.getJoke().execute().getData();
-        } catch (IOException e) {
-            return e.getMessage();
-        }
+            try {
+                return myApiService.getJoke().execute().getData();
+            } catch (IOException e) {
+                return e.getMessage();
+            }
     }
 
     @Override
