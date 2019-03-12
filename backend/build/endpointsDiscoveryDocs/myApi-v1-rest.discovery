@@ -23,17 +23,7 @@
   "getJoke": {
    "httpMethod": "GET",
    "id": "myApi.getJoke",
-   "parameterOrder": [
-    "name"
-   ],
-   "parameters": {
-    "name": {
-     "location": "path",
-     "required": true,
-     "type": "string"
-    }
-   },
-   "path": "mybean/{name}",
+   "path": "mybean",
    "response": {
     "$ref": "MyBean"
    },

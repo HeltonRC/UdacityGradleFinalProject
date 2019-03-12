@@ -22,17 +22,14 @@ public class MyEndpoint {
     @ApiMethod(name = "sayHi")
     public MyBean sayHi(@Named("name") String name) {
         MyBean response = new MyBean();
-        response.setData("Hi, " + name);
+        //response.setData("Hi, " + name);
 
         return response;
     }
 
     @ApiMethod(name = "getJoke")
-    public MyBean getJoke(@Named("name") String name) {
+    public MyBean getJoke() {
         MyBean response = new MyBean();
-
-        response.setData("This is the joke from the Endpoint, " + name);
-
         return response;
     }
 
