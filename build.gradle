@@ -20,3 +20,11 @@ allprojects {
         google()
     }
 }
+
+task optionalTask(dependsOn: [":backend:appengineStart",
+                              ":app:connectedAndroidTest",
+                              ':backend:appengineStop']) {
+    doLast {
+        println 'optionalTask completed'
+    }
+}
