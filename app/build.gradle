@@ -47,9 +47,9 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    endpointsServer project(path: ':backend', configuration: 'endpoints')
     compile project(':libJokes')
     compile project(':androidlib')
+    endpointsServer project(path: ':backend', configuration: 'endpoints')
 
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.google.api-client:google-api-client:1.23.0'
